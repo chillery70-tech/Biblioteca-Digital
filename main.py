@@ -1,6 +1,19 @@
 /prestamo-duplicado---viene-de-tu-tarjeta-6_Correcciones->-Corrección-de-errores
 usuarios = {"admin": "1234"}
 # Tarjeta 1_Ideas: Usuario de entrada y Contraseña
+feature/buscador---viene-de-tu-tarjeta-3_Priorizado->-Pantalla-principal-con-buscador
+def buscar():
+    # Tarjeta 3_Priorizado - Pantalla principal con buscador
+    texto = entry_buscar.get().lower()
+    lista.delete(0, tk.END)
+    for titulo, datos in libros.items():
+        if texto in titulo.lower():
+            lista.insert(tk.END, f"{titulo} | {datos['genero']} | {datos['estado']}")
+
+# En tu interfaz agrega esto:
+entry_buscar = tk.Entry(frame_biblio)
+entry_buscar.pack()
+tk.Button(frame_biblio, text="Buscar", command=buscar).pack()
 def prestar_libro_corregido():
     # Tarjeta 6_Correcciones - Corrección de errores
     # FIX: Valida que no se preste 2 veces el mismo libro
@@ -68,4 +81,3 @@ combo_genero = ttk.Combobox(frame_reg, values=["Todos los generos", "Fantasia", 
 combo_genero.set("Libros de todos los generos")
 combo_genero.pack()
 tk.Button(frame_reg, text="Registrar", command=registrar_libro).pack()
-
